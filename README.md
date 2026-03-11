@@ -1,139 +1,222 @@
-# 🛡️ PhishGuard AI — Chrome Extension
+# 🛡️ PhishGuard AI
 
-AI-powered phishing link detector using a scikit-learn ML model trained on real phishing data from Kaggle.
+> AI-powered phishing URL detector built as a Chrome Extension with a Python ML backend.
+
+![Python](https://img.shields.io/badge/Python-3.11-blue?style=flat-square&logo=python)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-1.4-orange?style=flat-square&logo=scikit-learn)
+![Flask](https://img.shields.io/badge/Flask-3.0-black?style=flat-square&logo=flask)
+![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-yellow?style=flat-square&logo=googlechrome)
+![Accuracy](https://img.shields.io/badge/Accuracy-97.69%25-brightgreen?style=flat-square)
+![Live](https://img.shields.io/badge/API-Live%20on%20Render-success?style=flat-square)
+
+---
+
+## 🔴 Live Demo
+
+| Service | URL |
+|---------|-----|
+| 🌐 API | https://phishguard-ai-l251.onrender.com |
+| 📊 Health Check | https://phishguard-ai-l251.onrender.com/ |
+
+---
+
+## 📸 Screenshots
+
+### Chrome Extension
+- ✅ Safe URL detected
+- 🚨 Phishing URL detected with 70%+ risk score
+- ⚠️ Suspicious signals breakdown
+
+---
+
+## 🧠 How It Works
+
+```
+User visits URL
+      ↓
+Chrome Extension captures URL
+      ↓
+Sends to Flask API (Render cloud)
+      ↓
+ML Model analyzes 30 features
+      ↓
+Returns risk score + verdict
+      ↓
+Extension shows result to user
+```
+
+---
+
+## 🤖 ML Model
+
+| Model | Accuracy |
+|-------|----------|
+| ✅ Random Forest (selected) | **97.69%** |
+| Logistic Regression | ~92% |
+
+### Dataset
+- Source: Kaggle — UCI Phishing Website Dataset
+- Total URLs: **11,055**
+- Phishing: 4,898 | Safe: 6,157
+- Features: **30 website characteristics**
+
+### Features Analyzed
+- IP address in URL
+- HTTPS / SSL status
+- Domain registration length
+- URL length
+- Suspicious TLD (.tk, .ml, .ga, .xyz)
+- Phishing keywords (login, verify, secure...)
+- Subdomain depth
+- URL shortener detection
+- And 22 more...
 
 ---
 
 ## 📁 Project Structure
 
 ```
-phishguard/
-├── backend/
-│   ├── train_model.py     ← Train ML model on Kaggle dataset
-│   ├── app.py             ← Flask API server
-│   ├── requirements.txt   ← Python dependencies
-│   └── dataset.csv        ← (you add this from Kaggle)
+phishguard-ai/
+├── app.py                  ← Flask REST API
+├── train_model.py          ← ML training script
+├── requirements.txt        ← Python dependencies
+├── phishguard_model.pkl    ← Trained ML model
+├── feature_names.pkl       ← Feature column names
+├── dataset.csv             ← Kaggle dataset
 │
-└── extension/
-    ├── manifest.json
-    ├── popup.html
-    ├── icons/             ← Add icon PNGs here
-    └── js/
-        ├── popup.js       ← Popup UI logic
-        ├── background.js  ← Auto-scans on navigation
-        └── content.js     ← Highlights links on page
+├── chrome_extension/       ← Chrome Extension
+│   ├── manifest.json
+│   ├── popup.html
+│   ├── icons/
+│   └── js/
+│       ├── popup.js        ← Popup UI logic
+│       ├── background.js   ← Auto-scan on navigation
+│       └── content.js      ← Highlight links on page
+│
+└── website/
+    └── index.html          ← Official launch website
 ```
 
 ---
 
-## 🗃️ Step 1: Get the Dataset from Kaggle
+## 🚀 Installation
 
-1. Go to one of these (free datasets):
-   - **Recommended**: https://www.kaggle.com/datasets/taruntiwarihp/phishing-sites-urls
-   - **Large (88K)**: https://www.kaggle.com/datasets/eswarchandt/phishing-website-detector
-   - **Rich features**: https://www.kaggle.com/datasets/shashwatwork/web-page-phishing-detection-dataset
-
-2. Download the CSV file
-3. Rename it to `dataset.csv`
-4. Place it inside the `backend/` folder
-
----
-
-## 🧠 Step 2: Train the ML Model
-
+### 1. Clone the repo
 ```bash
-cd backend
+git clone https://github.com/madhuchandank825/phishguard-ai.git
+cd phishguard-ai
+```
 
-# Install dependencies
+### 2. Install Python dependencies
+```bash
 pip install -r requirements.txt
+```
 
-# Train the model
+### 3. Train the model
+```bash
 python train_model.py dataset.csv
 ```
 
-This will:
-- Extract 25+ URL features (length, dots, keywords, TLD, IP, etc.)
-- Train a Random Forest classifier
-- Print accuracy + classification report
-- Save `phishguard_model.pkl`
-
-**Expected accuracy: 95–98%** depending on the dataset.
-
----
-
-## 🚀 Step 3: Start the API Server
-
+### 4. Start the API server
 ```bash
-cd backend
 python app.py
 ```
+API runs at: `http://localhost:5000`
 
-Server runs at: `http://localhost:5000`
-
-Test it manually:
-```bash
-curl -X POST http://localhost:5000/check \
-  -H "Content-Type: application/json" \
-  -d '{"url": "http://paypa1-secure.tk/login"}'
-```
-
----
-
-## 🔌 Step 4: Load the Chrome Extension
-
-1. Open Chrome → go to `chrome://extensions/`
-2. Enable **Developer Mode** (top right toggle)
-3. Click **"Load unpacked"**
-4. Select the `extension/` folder
-5. The PhishGuard icon will appear in your toolbar!
-
----
-
-## 🎯 How It Works
-
-| Component | Role |
-|-----------|------|
-| `train_model.py` | Extracts URL features, trains Random Forest on Kaggle data |
-| `app.py` | Flask REST API — receives URLs, returns predictions |
-| `popup.js` | Chrome popup UI — scan current page on click |
-| `background.js` | Auto-scans every new page you navigate to |
-| `content.js` | Highlights dangerous links on the page |
-
----
-
-## 🧪 Features Extracted (25+)
-
-- URL / domain / path length
-- Number of dots, hyphens, slashes, `@` signs
-- Contains IP address instead of domain
-- HTTPS vs HTTP
-- Suspicious TLDs (`.tk`, `.ml`, `.xyz`, etc.)
-- URL shortener detection
-- Suspicious keywords (`login`, `verify`, `paypal`, etc.)
-- Subdomain depth
-- Digit ratio
-- ...and more
+### 5. Load Chrome Extension
+1. Open Chrome → `chrome://extensions/`
+2. Enable **Developer Mode**
+3. Click **Load unpacked**
+4. Select the `chrome_extension/` folder
 
 ---
 
 ## 📡 API Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET  | `/`             | Health check |
-| POST | `/check`        | Check single URL |
-| POST | `/check-batch`  | Check up to 50 URLs |
+### `GET /`
+Health check
+```json
+{
+  "service": "PhishGuard AI",
+  "status": "running",
+  "model_loaded": true
+}
+```
+
+### `POST /check`
+Check a single URL
+```bash
+curl -X POST https://phishguard-ai-l251.onrender.com/check \
+  -H "Content-Type: application/json" \
+  -d '{"url": "http://paypal-secure-login.tk/verify"}'
+```
+
+Response:
+```json
+{
+  "url": "http://paypal-secure-login.tk/verify",
+  "prediction": 1,
+  "confidence": {
+    "safe": 15.0,
+    "phishing": 85.0
+  },
+  "verdict": {
+    "status": "DANGER",
+    "label": "Phishing Detected",
+    "emoji": "🚨",
+    "message": "This URL shows strong phishing indicators. Do NOT proceed."
+  },
+  "flags": [
+    "Suspicious top-level domain (.tk, .ga, .xyz etc.)",
+    "Phishing keywords found (login, verify, secure...)",
+    "Hyphen in domain name"
+  ]
+}
+```
+
+### `POST /check-batch`
+Check up to 50 URLs at once
+```bash
+curl -X POST https://phishguard-ai-l251.onrender.com/check-batch \
+  -H "Content-Type: application/json" \
+  -d '{"urls": ["https://google.com", "http://paypal.tk/login"]}'
+```
 
 ---
 
-## 🛠️ Requirements
+## 🎯 Risk Levels
 
-- Python 3.8+
-- Chrome browser
-- Kaggle account (free) to download dataset
+| Level | Risk Score | Meaning |
+|-------|-----------|---------|
+| ✅ Safe | 0% - 24% | No phishing indicators |
+| 🔍 Low Risk | 25% - 44% | Minor suspicious signals |
+| ⚠️ Warning | 45% - 69% | Multiple suspicious signals |
+| 🚨 Danger | 70% - 99% | Strong phishing indicators |
+
+---
+
+## 🛠️ Tech Stack
+
+- **ML Model**: scikit-learn (Random Forest)
+- **Backend**: Python, Flask, Flask-CORS
+- **Frontend**: HTML, CSS, JavaScript
+- **Chrome Extension**: Manifest V3
+- **Deployment**: Render.com (free tier)
+- **Dataset**: Kaggle UCI Phishing Dataset
 
 ---
 
 ## 👥 Team
 
-PhishGuard AI — Design Project
+Built as a **Design Project 2026** by:
+- **Madhu** (madhuchandank825) — Full Stack & ML
+
+---
+
+## 📄 License
+
+MIT License — free to use for educational purposes.
+
+---
+
+⭐ **Star this repo if you found it useful!**
