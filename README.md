@@ -20,7 +20,7 @@
 
 ---
 
-## 📸 Screenshots
+## Screenshots
 
 ### Chrome Extension
 - Safe URL detected
