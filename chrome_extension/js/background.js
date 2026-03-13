@@ -1,7 +1,7 @@
 // PhishGuard AI - Background Service Worker
 // Monitors navigation and auto-checks URLs
 
-const API_BASE = "http://localhost:5000";
+const API_BASE = "https://phishguard-ai-l251.onrender.com";
 const HIGH_RISK_THRESHOLD = 80; // Auto-warn if phishing risk > 80%
 
 // Listen for completed page navigations

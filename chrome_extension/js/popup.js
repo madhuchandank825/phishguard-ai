@@ -1,5 +1,5 @@
 // PhishGuard AI - Popup Script
-const API_BASE = "http://localhost:5000";
+const API_BASE = "https://phishguard-ai-l251.onrender.com";
 
 // ── DOM Elements ──
 const currentUrlEl  = document.getElementById("currentUrl");
