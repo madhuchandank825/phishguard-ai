@@ -11,7 +11,7 @@
 
 ---
 
-## Live Demo
+# Live Demo
 
 | Service | URL |
 |---------|-----|
@@ -20,7 +20,7 @@
 
 ---
 
-## Screenshots
+# Screenshots
 
 ### Chrome Extension
 - Safe URL detected
@@ -29,7 +29,7 @@
 
 ---
 
-## How It Works
+# How It Works
 
 ```
 User visits URL
@@ -47,20 +47,20 @@ Extension shows result to user
 
 ---
 
-## ML Model
+# ML Model
 
 | Model | Accuracy |
 |-------|----------|
 | Random Forest (selected) | **97.69%** |
 | Logistic Regression | ~92% |
 
-### Dataset
+# Dataset
 - Source: Kaggle — UCI Phishing Website Dataset
 - Total URLs: **11,055**
 - Phishing: 4,898 | Safe: 6,157
 - Features: **30 website characteristics**
 
-### Features Analyzed
+# Features Analyzed
 - IP address in URL
 - HTTPS / SSL status
 - Domain registration length
@@ -73,7 +73,7 @@ Extension shows result to user
 
 ---
 
-## Project Structure
+# Project Structure
 
 ```
 phishguard-ai/
@@ -99,31 +99,31 @@ phishguard-ai/
 
 ---
 
-## Installation
+# Installation
 
-### 1. Clone the repo
+# 1. Clone the repo
 ```bash
 git clone https://github.com/madhuchandank825/phishguard-ai.git
 cd phishguard-ai
 ```
 
-### 2. Install Python dependencies
+# 2. Install Python dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Train the model
+# 3. Train the model
 ```bash
 python train_model.py dataset.csv
 ```
 
-### 4. Start the API server
+# 4. Start the API server
 ```bash
 python app.py
 ```
 API runs at: `http://localhost:5000`
 
-### 5. Load Chrome Extension
+# 5. Load Chrome Extension
 1. Open Chrome → `chrome://extensions/`
 2. Enable **Developer Mode**
 3. Click **Load unpacked**
@@ -131,7 +131,7 @@ API runs at: `http://localhost:5000`
 
 ---
 
-## API Endpoints
+# API Endpoints
 
 ### `GET /`
 Health check
