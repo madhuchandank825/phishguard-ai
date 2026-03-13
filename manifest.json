@@ -1,23 +1,27 @@
 {
   "manifest_version": 3,
   "name": "PhishGuard AI",
-  "version": "1.0.0",
-  "description": "AI-powered phishing link detector. Stay safe in real-time.",
+  "version": "1.0",
+  "description": "AI-Powered Real-Time Phishing URL Detection using Machine Learning",
   "permissions": [
     "activeTab",
     "tabs",
     "storage",
+    "notifications",
     "webNavigation"
   ],
-  "host_permissions": ["<all_urls>"],
+  "host_permissions": [
+    "https://*/*",
+    "http://*/*"
+  ],
   "background": {
-    "service_worker": "js/background.js"
+    "service_worker": "background.js"
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["js/content.js"],
-      "run_at": "document_end"
+      "matches": ["https://*/*", "http://*/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
     }
   ],
   "action": {
