@@ -1,4 +1,4 @@
-# 🛡️ PhishGuard AI
+# PhishGuard AI
 
 > AI-powered phishing URL detector built as a Chrome Extension with a Python ML backend.
 
@@ -11,25 +11,25 @@
 
 ---
 
-## 🔴 Live Demo
+## Live Demo
 
 | Service | URL |
 |---------|-----|
-| 🌐 API | https://phishguard-ai-l251.onrender.com |
-| 📊 Health Check | https://phishguard-ai-l251.onrender.com/ |
+| API | https://phishguard-ai-l251.onrender.com |
+| Health Check | https://phishguard-ai-l251.onrender.com/ |
 
 ---
 
 ## 📸 Screenshots
 
 ### Chrome Extension
-- ✅ Safe URL detected
-- 🚨 Phishing URL detected with 70%+ risk score
-- ⚠️ Suspicious signals breakdown
+- Safe URL detected
+- Phishing URL detected with 70%+ risk score
+- Suspicious signals breakdown
 
 ---
 
-## 🧠 How It Works
+## How It Works
 
 ```
 User visits URL
@@ -47,11 +47,11 @@ Extension shows result to user
 
 ---
 
-## 🤖 ML Model
+## ML Model
 
 | Model | Accuracy |
 |-------|----------|
-| ✅ Random Forest (selected) | **97.69%** |
+| Random Forest (selected) | **97.69%** |
 | Logistic Regression | ~92% |
 
 ### Dataset
@@ -73,7 +73,7 @@ Extension shows result to user
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 phishguard-ai/
@@ -99,7 +99,7 @@ phishguard-ai/
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### 1. Clone the repo
 ```bash
@@ -131,7 +131,7 @@ API runs at: `http://localhost:5000`
 
 ---
 
-## 📡 API Endpoints
+## API Endpoints
 
 ### `GET /`
 Health check
@@ -184,20 +184,20 @@ curl -X POST https://phishguard-ai-l251.onrender.com/check-batch \
 
 ---
 
-## 🎯 Risk Levels
+## Risk Levels
 
 | Level | Risk Score | Meaning |
 |-------|-----------|---------|
-| ✅ Safe | 0% - 24% | No phishing indicators |
-| 🔍 Low Risk | 25% - 44% | Minor suspicious signals |
-| ⚠️ Warning | 45% - 69% | Multiple suspicious signals |
-| 🚨 Danger | 70% - 99% | Strong phishing indicators |
+| Safe | 0% - 24% | No phishing indicators |
+| Low Risk | 25% - 44% | Minor suspicious signals |
+| Warning | 45% - 69% | Multiple suspicious signals |
+| Danger | 70% - 99% | Strong phishing indicators |
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
-- **ML Model**: scikit-learn (Random Forest)
+- **ML Model**: scikit-learn (Random Forest, Logistic Regression)
 - **Backend**: Python, Flask, Flask-CORS
 - **Frontend**: HTML, CSS, JavaScript
 - **Chrome Extension**: Manifest V3
@@ -206,14 +206,14 @@ curl -X POST https://phishguard-ai-l251.onrender.com/check-batch \
 
 ---
 
-## 👥 Team
+## Team
 
 Built as a **Design Project 2026** by:
 - **Madhu** (madhuchandank825) — Full Stack & ML
 
 ---
 
-## 📄 License
+## License
 
 MIT License — free to use for educational purposes.
 
