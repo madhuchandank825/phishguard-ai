@@ -143,7 +143,7 @@ Health check
 }
 ```
 
-### `POST /check`
+#`POST /check`
 Check a single URL
 ```bash
 curl -X POST https://phishguard-ai-l251.onrender.com/check \
@@ -174,7 +174,7 @@ Response:
 }
 ```
 
-### `POST /check-batch`
+# `POST /check-batch`
 Check up to 50 URLs at once
 ```bash
 curl -X POST https://phishguard-ai-l251.onrender.com/check-batch \
@@ -184,7 +184,7 @@ curl -X POST https://phishguard-ai-l251.onrender.com/check-batch \
 
 ---
 
-## Risk Levels
+# Risk Levels
 
 | Level | Risk Score | Meaning |
 |-------|-----------|---------|
@@ -195,7 +195,7 @@ curl -X POST https://phishguard-ai-l251.onrender.com/check-batch \
 
 ---
 
-## Tech Stack
+# Tech Stack
 
 - **ML Model**: scikit-learn (Random Forest, Logistic Regression)
 - **Backend**: Python, Flask, Flask-CORS
@@ -206,14 +206,14 @@ curl -X POST https://phishguard-ai-l251.onrender.com/check-batch \
 
 ---
 
-## Team
+# Team
 
 Built as a **Design Project 2026** by:
 - **Madhu** (madhuchandank825) — Full Stack & ML
 
 ---
 
-## License
+# License
 
 MIT License — free to use for educational purposes.
 
